@@ -1,83 +1,387 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NMIXX | 2nd Fan Concert Macau 2025</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NMIXX | 2nd Fan Concert Macau 2025 - 饭拍影像记录</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-  body {
-    font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    background-color: #eef6ff;
-
-    color: #333;
-    text-align: center;
-    padding: 70px 20px;
-  }
-
-  h1 {
-    font-size: 52px;
-    margin-bottom: 8px;
-    letter-spacing: 3px;
-    color: #0b6cff;
-  }
-
-  h2 {
-    font-size: 22px;
-    color: #555;
-    margin-bottom: 40px;
-  }
-
-  .tag {
-  display: inline-block;
-  background: #0b6cff;
-  color: white;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  margin-bottom: 30px;
+/* 基础样式和变量 */
+:root {
+    --primary-blue: #0b6cff;
+    --secondary-blue: #39c6ff;
+    --light-blue: #eef6ff;
+    --dark-blue: #0847a3;
+    --text-dark: #333;
+    --text-medium: #555;
+    --text-light: #777;
+    --white: #ffffff;
+    --gray-bg: #f8fafd;
+    --border-radius: 12px;
+    --box-shadow: 0 10px 30px rgba(11, 108, 255, 0.1);
+    --transition: all 0.3s ease;
 }
 
-  p {
-    font-size: 16px;
-    line-height: 1.9;
-    max-width: 620px;
-    margin: 0 auto 18px;
-  }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-  /* 小装饰线 */
-  .divider {
-    width: 60px;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+body {
+    font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background-color: var(--light-blue);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding: 0;
+}
+/* 导航栏样式 */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 18px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(11, 108, 255, 0.08);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--primary-blue);
+}
+
+.nav-brand i {
+    color: var(--secondary-blue);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-medium);
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 5px 0;
+    position: relative;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+    color: var(--primary-blue);
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-blue);
+}
+/* 主标题区域样式 */
+.main-title {
+    text-align: center;
+    padding: 120px 0 60px;
+    margin-bottom: 40px;
+}
+
+.main-title h1 {
+    font-size: 3.8rem;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    color: var(--primary-blue);
+    text-shadow: 0 2px 10px rgba(11, 108, 255, 0.1);
+}
+
+.main-title h2 {
+    font-size: 1.5rem;
+    color: var(--text-medium);
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.tag {
+    display: inline-block;
+    background: var(--primary-blue);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(11, 108, 255, 0.2);
+}
+
+/* 日期展示样式 */
+.date-display {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.date-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.date-number {
+    font-size: 2.8rem;
+    font-weight: bold;
+    line-height: 1;
+    color: var(--primary-blue);
+}
+
+.date-label {
+    font-size: 1rem;
+    color: var(--text-medium);
+    margin-top: 8px;
+}
+
+/* 小装饰线 */
+.divider {
+    width: 100px;
     height: 4px;
-    background-color: #39c6ff;
+    background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
     margin: 30px auto;
     border-radius: 2px;
-  }
+}
+        /* 视频区域样式 */
+.video-section {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 50px 40px;
+    margin: 40px 0;
+    box-shadow: var(--box-shadow);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.section-header p {
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.video-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.video-card {
+    background: var(--gray-bg);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    transition: var(--transition);
+    border: 1px solid rgba(11, 108, 255, 0.1);
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(11, 108, 255, 0.15);
+    border-color: var(--secondary-blue);
+}
+
+.video-card i {
+    font-size: 2.2rem;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+.video-card h3 {
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.video-card p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.video-link {
+    display: inline-block;
+    background: var(--primary-blue);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.video-link:hover {
+    background: var(--dark-blue);
+    transform: scale(1.05);
+}
+
+.coming-soon {
+    text-align: center;
+    padding: 30px;
+    background: var(--gray-bg);
+    border-radius: var(--border-radius);
+    border: 2px dashed var(--secondary-blue);
+    color: var(--text-medium);
+}
+
+.coming-soon i {
+    font-size: 2.5rem;
+    color: var(--secondary-blue);
+    margin-bottom: 15px;
+}
 </style>
 </head>
 <body>
-    <h1>NMIXX</h1>
-    <h2>2nd Fan Concert · 澳门站</h2>
-    <div class="tag">MACAU · 2025</div>
-    <div class="divider"></div>
-    <div class="divider"></div>
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-star"></i>
+                <span>NMIXX FANCON</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="active">首页</a>
+                <a href="#videos">舞台视频</a>
+                <a href="#about">关于演出</a>
+                <a href="#gallery">照片墙</a>
+            </div>
+        </div>
+    </nav>
 
-<h2>📸 饭拍合集</h2>
-<p>
-  ▶ 成员直拍 / 全景舞台 / 特别时刻  
-  <br>（整理中）
-</p>
-<div class="video-list">
-      <a href="链接" target="_blank">LILY — Love Me Like This</a>
-      <!-- 之后继续往下加 -->
-      <!-- <a href="链接">HAEWON — DASH</a> -->
-    </div>
-  </div>
-  <p>
-    2025年6月28日澳门演出  
-    NMIXX 的 2nd Fan Concert 饭拍舞台记录
-  </p>
-
-  <p>
-    本页面用于整理当日舞台的饭拍影像、成员表现与个人记录。
-  </p>
-
+    <div class="container">
+        <!-- 主标题区域 -->
+        <section class="main-title" id="home">
+            <h1>NMIXX</h1>
+            <h2>2nd Fan Concert · 澳门站</h2>
+            <div class="tag">MACAU · 2025</div>
+            <div class="divider"></div>
+            <div class="divider" style="width: 60px;"></div>
+            <!-- 日期展示 -->
+            <div class="date-display">
+                <div class="date-item">
+                    <span class="date-number">2025</span>
+                    <span class="date-label">年</span>
+                </div>
+                <div class="date-item">
+                    <span class="date-number">06</span>
+                    <span class="date-label">月</span>
+                </div>
+                <div class="date-item">
+                    <span class="date-number">28</span>
+                    <span class="date-label">日</span>
+                </div>
+            </div>
+        </section>        
+        <!-- 视频区域 -->
+        <section class="video-section" id="videos">
+            <div class="section-header">
+                <h2><i class="fas fa-video"></i> 📸 饭拍合集</h2>
+                <p>成员直拍 / 全景舞台 / 特别时刻 · 持续更新中</p>
+            </div>
+            
+            <div class="video-list">
+                <div class="video-card">
+                    <i class="fas fa-music"></i>
+                    <h3>LILY — Love Me Like This</h3>
+                    <p>主唱LILY的直拍舞台，高音部分表现力十足</p>
+                    <a href="#" class="video-link">观看视频</a>
+                </div>
+                
+                <div class="video-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>HAEWON — DASH</h3>
+                    <p>队长HAEWON的活力舞台，舞蹈力度完美</p>
+                    <a href="#" class="video-link">观看视频</a>
+                </div>
+                
+                <div class="video-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>SULLYOON — Soñar</h3>
+                    <p>视觉中心SULLYOON的抒情舞台</p>
+                    <a href="#" class="video-link">观看视频</a>
+                </div>
+            </div>
+            
+            <div class="coming-soon">
+                <i class="fas fa-sync-alt"></i>
+                <h3>更多内容整理中</h3>
+                <p>BAE、JIWOO、KYUJIN等成员的舞台正在整理上传</p>
+            </div>
+        </section>
+                <!-- 关于演出区域 -->
+        <section class="about-section" id="about">
+            <div class="section-header">
+                <h2><i class="fas fa-info-circle"></i> 关于本次演出</h2>
+                <p>2025年6月28日 · 澳门 · NMIXX 2nd Fan Concert</p>
+            </div>
+            
+            <div class="info-box">
+                <h3><i class="fas fa-calendar-alt"></i> 演出信息</h3>
+                <p>2025年6月28日，NMIXX在澳门举行了第二次粉丝演唱会，带来了精彩的舞台表演和与粉丝的亲密互动。</p>
+            </div>
+            
+            <div class="info-box">
+                <h3><i class="fas fa-camera"></i> 记录目的</h3>
+                <p>本页面用于整理当日舞台的饭拍影像、成员表现与个人记录，为无法到场的粉丝提供观看资源，也为到场粉丝留下回忆。</p>
+            </div>
+            
+            <div class="info-box">
+                <h3><i class="fas fa-sync-alt"></i> 更新状态</h3>
+                <p>视频内容持续整理更新中，包括成员直拍、全景舞台、特别舞台等。预计将收录所有成员的solo和团体舞台。</p>
+            </div>
+        </section>
+                <!-- 页脚 -->
+        <footer>
+            <div class="footer-content">
+                <h3>NMIXX 2nd Fan Concert 澳门站记录</h3>
+                <div class="footer-links">
+                    <a href="#home">首页</a>
+                    <a href="#videos">舞台视频</a>
+                    <a href="#about">关于演出</a>
+                </div>
+                <p class="copyright">本页面为粉丝非官方整理，所有视频版权归原作者所有 © 2025</p>
+            </div>
+        </footer>
 </body>
 </html>
