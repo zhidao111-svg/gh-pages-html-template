@@ -208,35 +208,74 @@ body {
 }
 
 .video-card {
-    background: var(--gray-bg);
-    border-radius: var(--border-radius);
-    padding: 25px;
+    background: white;
+    border-radius: 50% 20% 50% 20% / 60% 30% 70% 40%; /* 泡泡形状 */
+    padding: 30px;
     transition: var(--transition);
-    border: 1px solid rgba(11, 108, 255, 0.1);
+    border: 2px solid rgba(11, 108, 255, 0.2);
+    box-shadow: 
+        0 8px 25px rgba(11, 108, 255, 0.12),
+        0 2px 5px rgba(11, 108, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
 }
 
 .video-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(11, 108, 255, 0.15);
+    transform: translateY(-5px) rotate(1deg); /* 增加一点旋转 */
+    box-shadow: 0 15px 35px rgba(11, 108, 255, 0.2);
     border-color: var(--secondary-blue);
+}
+
+/* 泡泡装饰效果 */
+.video-card::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 50px;
+    height: 50px;
+    background: rgba(57, 198, 255, 0.08);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* 可以再加一个泡泡 */
+.video-card::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    width: 30px;
+    height: 30px;
+    background: rgba(11, 108, 255, 0.05);
+    border-radius: 50%;
+    z-index: 0;
 }
 
 .video-card i {
     font-size: 2.2rem;
     color: var(--primary-blue);
     margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
 }
 
 .video-card h3 {
     color: var(--text-dark);
     margin-bottom: 10px;
     font-size: 1.2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .video-card p {
     color: var(--text-light);
     font-size: 0.95rem;
     margin-bottom: 15px;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
 }
 
 .video-link {
@@ -249,6 +288,8 @@ body {
     font-size: 0.9rem;
     font-weight: 500;
     transition: var(--transition);
+    position: relative;
+    z-index: 1;
 }
 
 .video-link:hover {
