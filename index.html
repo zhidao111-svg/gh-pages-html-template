@@ -5,172 +5,427 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NMIXX | 2nd Fan Concert Macau 2025 - 饭拍影像记录</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 添加CSS链接 -->
+    <link rel="stylesheet" href="styles.css">
     <style>
-/* 基础样式和变量 */
+       /* =========================
+   ① 全局变量区（主题色 / 阴影 / 动画速度）
+   作用：统一管理全站配色和常用参数
+   改颜色、风格 → 先看这里
+   ========================= */
 :root {
-    --primary-blue: #0b6cff;
-    --secondary-blue: #39c6ff;
-    --light-blue: #eef6ff;
-    --dark-blue: #0847a3;
-    --text-dark: #333;
-    --text-medium: #555;
-    --text-light: #777;
+    --primary-blue: #0b6cff;      /* 主蓝色（按钮 / 图标） */
+    --secondary-blue: #39c6ff;    /* 辅助蓝（描边 / 高亮） */
+    --light-blue: #eef6ff;        /* 页面背景浅蓝 */
+    --dark-blue: #0847a3;         /* hover 深蓝 */
+    --text-dark: #333;            /* 主文字色 */
+    --text-medium: #555;          /* 次级文字 */
+    --text-light: #777;           /* 说明文字 */
     --white: #ffffff;
-    --gray-bg: #f8fafd;
-    --border-radius: 12px;
+    --gray-bg: #f8fafd;           /* 灰色卡片背景 */
+    --border-radius: 12px;        /* 圆角统一值 */
     --box-shadow: 0 10px 30px rgba(11, 108, 255, 0.1);
-    --transition: all 0.3s ease;
+    --transition: all 0.3s ease;  /* 动画统一速度 */
 }
 
+/* =========================
+   ② 全局重置
+   作用：清除浏览器默认 margin / padding
+   ========================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* =========================
+   ③ 页面主容器
+   作用：控制页面最大宽度 & 居中
+   ========================= */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
+
+/* =========================
+   ④ body 基础样式
+   作用：整站字体、背景色、行距
+   ========================= */
 body {
     font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
     background-color: var(--light-blue);
     color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================
+   ⑱ 顶部大图 Hero 区域
+   对应 HTML：<div class="hero-nav">
+   ========================= */
+.hero-nav {
+    width: 100%;
+    height: 160px;              /* 变成细长条 */
+    background-color: var(--light-blue);
+    margin-bottom: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;        /* 垂直居中 */
+}
+
+/* =========================
+   ⑲ 图片里的“浏览器标题条”
+   ========================= */
+.browser-bar {
+    width: 720px;
+    max-width: 90%;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 28px;
+
+    background: rgba(255, 255, 255, 0.55);   /* 半透明 */
+    backdrop-filter: blur(14px);             /* 磨砂玻璃 */
+    -webkit-backdrop-filter: blur(14px);
+
+    border-radius: 999px;
+    border: 1px solid rgba(120, 150, 190, 0.45);
+
+   box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.65);
+
+    position: relative;
+
+    animation: bar-breathe 3s ease-in-out infinite;
+
+}
+
+.browser-bar::after {
+    content: "★";
+    font-size: 24px;
+
+    position: absolute;
+    right: 26px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    opacity: 0.55;
+    color: #555;
+
+    text-shadow:
+        0 0 4px rgba(255,255,255,0.35),
+        0 0 10px rgba(160,180,255,0.25);
+
+    transition:
+        opacity 0.18s ease,
+        text-shadow 0.18s ease,
+        filter 0.18s ease;
+}
+
+
+.browser-bar:hover::after {
+    opacity: 0.95;
+
+    filter: brightness(1.4) contrast(1.15);
+
+    text-shadow:
+        0 0 6px rgba(255,255,255,0.9),
+        0 0 18px rgba(180,200,255,0.75);
+}
+
+
+.browser-text {
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: #555;
+}
+
+@keyframes bar-breathe {
+    0% {
+        opacity: 0.92;
+        box-shadow:
+            0 8px 20px rgba(0,0,0,0.15),
+            inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow:
+            0 10px 28px rgba(0,0,0,0.22),
+            inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    100% {
+        opacity: 0.92;
+        box-shadow:
+            0 8px 20px rgba(0,0,0,0.15),
+            inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+}
+
+@keyframes magnifier-breath {
+    0%, 100% {
+        transform: translateY(-50%) scale(1);
+        opacity: 0.45;
+        text-shadow:
+            0 0 4px rgba(255,255,255,0.5),
+            0 0 10px rgba(180,200,255,0.25);
+    }
+
+    50% {
+        transform: translateY(-50%) scale(1.12);
+        opacity: 0.85;
+        text-shadow:
+            0 0 8px rgba(255,255,255,0.8),
+            0 0 22px rgba(180,200,255,0.45);
+    }
+}
+
+
+/* =========================
+   ⑥ 第二行导航栏（HOME / VIDEO / ABOUT）
+   对应 HTML：<nav class="main-nav">
+   ========================= */
+.main-nav {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(6px);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.nav-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    list-style: none;
+    margin: 0;
     padding: 0;
 }
-/* 导航栏样式 */
-.navbar {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 18px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 20px rgba(11, 108, 255, 0.08);
-}
 
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: var(--primary-blue);
-}
-
-.nav-brand i {
-    color: var(--secondary-blue);
-}
-
-.nav-links {
-    display: flex;
-    gap: 30px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-medium);
-    font-weight: 500;
-    transition: var(--transition);
-    padding: 5px 0;
+.nav-item {
     position: relative;
 }
 
-.nav-links a:hover, 
-.nav-links a.active {
-    color: var(--primary-blue);
+.nav-link {
+    image-rendering: pixelated;
+  
+    display: inline-block;
+    min-width: 10px;
+    text-align: center;
+
+    padding: 5px 12px;
+
+    font-family: 'Courier New', Consolas, monospace;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+
+    color: #1f2f46;
+    background: rgba(255, 255, 255, 0.65);
+
+    border: 1px solid rgba(31, 47, 70, 0.75);
+    border-radius: 0;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.6),
+        0 2px 6px rgba(0,0,0,0.06);
+
+    text-decoration: none;
+
+    transition:
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.15s ease;
 }
 
-.nav-links a.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--primary-blue);
+.nav-link:hover {
+    background: #eef3f8;        /* 单色，不渐变 */
+    color: #1f2f46;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.7),
+        0 2px 4px rgba(0,0,0,0.18);
 }
-/* 主标题区域样式 */
+
+.nav-link:active {
+    transform: translateY(2px);
+}
+
+    box-shadow:
+        inset 1px 1px 0 rgba(0,0,0,0.2),
+        inset -1px -1px 0 rgba(255,255,255,0.8);
+}
+
+
+/* =========================
+   ⑦ 标题下方的横线装饰
+   对应 HTML：<div class="divider">
+   ========================= */
+.divider {
+    height: 1px;
+    margin: 8px auto;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(160, 180, 220, 0.25),
+        transparent
+    );
+}
+
+.divider:nth-of-type(2) {
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(160, 200, 255, 0.55),
+        transparent
+    );
+}
+
+
+/* =========================
+   ⑧ 主标题区域（NMIXX / 澳门站）
+   对应 HTML：<section class="main-title">
+   ========================= */
 .main-title {
     text-align: center;
-    padding: 120px 0 60px;
+    padding: 80px 0 60px;
     margin-bottom: 40px;
+  
+    font-family: 
+        "Courier New",
+        Consolas,
+        "Microsoft YaHei UI",
+        "PingFang SC",
+        monospace;
 }
 
+/* MACAU2025 大标题 */
 .main-title h1 {
     font-size: 3.8rem;
     margin-bottom: 10px;
-    letter-spacing: 3px;
-    color: var(--primary-blue);
-    text-shadow: 0 2px 10px rgba(11, 108, 255, 0.1);
-}
-
-.main-title h2 {
-    font-size: 1.5rem;
-    color: var(--text-medium);
-    margin-bottom: 25px;
+    letter-spacing: 2px;
+    color: #2c3e50;
     font-weight: 400;
 }
 
-.tag {
-    display: inline-block;
-    background: var(--primary-blue);
-    color: white;
-    padding: 10px 25px;
-    border-radius: 30px;
-    font-size: 1.1rem;
-    margin-bottom: 40px;
-    font-weight: 500;
-    box-shadow: 0 5px 15px rgba(11, 108, 255, 0.2);
+ /* 副标题 */
+.main-title h2 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    color: #666;
 }
 
-/* 日期展示样式 */
+
+/* ===== 标题区中间的情绪照片 ===== */
+.title-photo {
+    width: 100%;
+    max-width: 420px;
+
+    margin: 26px auto 34px;
+
+    border-radius: 18px;
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(4px);
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.title-photo img {
+    width: 100%;
+    display: block;
+
+    filter:
+        contrast(1.05)
+        saturate(0.95)
+        brightness(0.98);
+}
+
+
+/* =========================
+   ⑩ 日期展示（复古按键感）
+   ========================= */
 .date-display {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 28px;
     margin-top: 40px;
 }
 
+/* 单个日期块 */
 .date-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    font-family: 'Courier New', 'Consolas', monospace;
 }
 
+/* 数字按钮 */
 .date-number {
-    font-size: 1.8rem;
-    font-weight: bold;
-    line-height: 1;
-    color: var(--primary-blue);
-}
+    width: 70px;
+    height: 50px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    color: #1f2f46;
+    background: rgba(255, 255, 255, 0.55);
+
+    border: 1.4px solid #b7c7d6;
+    border-radius: 50%;
+
+    box-shadow:
+        0 6px 16px rgba(183, 199, 214, 0.25),
+        inset 0 1px 0 rgba(255,255,255,0.7);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+ }
+ 
 .date-label {
-    font-size: 1rem;
-    color: var(--text-medium);
-    margin-top: 8px;
+    margin-top: 10px;
+
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+
+    color: #6b7785;
 }
 
-/* 小装饰线 */
-.divider {
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
-    margin: 30px auto;
-    border-radius: 2px;
-}
-        /* 视频区域样式 */
+/* =========================
+   ⑪ 视频区域整体卡片
+   对应 HTML：<section class="video-section">
+   ========================= */
 .video-section {
     background-color: var(--white);
     border-radius: var(--border-radius);
@@ -186,7 +441,7 @@ body {
 
 .section-header h2 {
     font-size: 2rem;
-    color: var(--primary-blue);
+    color: #2c3e50;
     margin-bottom: 15px;
     display: flex;
     align-items: center;
@@ -200,6 +455,9 @@ body {
     margin: 0 auto;
 }
 
+/* =========================
+   ⑫ 视频卡片列表（grid 布局）
+   ========================= */
 .video-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -207,9 +465,12 @@ body {
     margin-top: 30px;
 }
 
+/* =========================
+   ⑬ 单个视频卡片样式
+   ========================= */
 .video-card {
     background: white;
-    border-radius: 50% 20% 50% 20% / 60% 30% 70% 40%; /* 泡泡形状 */
+    border-radius: 50% 20% 50% 20% / 60% 30% 70% 40%;
     padding: 30px;
     transition: var(--transition);
     border: 2px solid rgba(11, 108, 255, 0.2);
@@ -222,12 +483,11 @@ body {
 }
 
 .video-card:hover {
-    transform: translateY(-5px) rotate(1deg); /* 增加一点旋转 */
+    transform: translateY(-5px) rotate(1deg);
     box-shadow: 0 15px 35px rgba(11, 108, 255, 0.2);
     border-color: var(--secondary-blue);
 }
 
-/* 泡泡装饰效果 */
 .video-card::before {
     content: '';
     position: absolute;
@@ -240,7 +500,6 @@ body {
     z-index: 0;
 }
 
-/* 可以再加一个泡泡 */
 .video-card::after {
     content: '';
     position: absolute;
@@ -278,6 +537,8 @@ body {
     z-index: 1;
 }
 
+
+/* 视频按钮 */
 .video-link {
     display: inline-block;
     background: var(--primary-blue);
@@ -297,6 +558,9 @@ body {
     transform: scale(1.05);
 }
 
+/* =========================
+   ⑭ “更多内容整理中”提示框
+   ========================= */
 .coming-soon {
     text-align: center;
     padding: 30px;
@@ -311,8 +575,11 @@ body {
     color: var(--secondary-blue);
     margin-bottom: 15px;
 }
-}
-/* 关于演出区域样式 */
+
+
+/* =========================
+   ⑮ 关于演出区域
+   ========================= */
 .about-section {
     background-color: var(--white);
     border-radius: var(--border-radius);
@@ -326,55 +593,90 @@ body {
     border-radius: var(--border-radius);
     padding: 25px;
     margin: 20px 0;
-    border-left: 4px solid var(--primary-blue);
+    border-left: 4px solid #2c3e50; /* 改为深灰色 */
 }
 
 .info-box h3 {
-    color: var(--primary-blue);
+    color: #2c3e50;
     margin-bottom: 10px;
 }
-</style>
+
+/* =========================
+   ⑯ 备用动画（目前没用到）
+   ========================= */
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+@keyframes bubble-glow {
+    0% {
+        box-shadow: 
+            0 0 15px rgba(168, 208, 230, 0.4),
+            0 5px 20px rgba(168, 208, 230, 0.3),
+            inset 0 0 30px rgba(168, 208, 230, 0.1);
+    }
+    100% {
+        box-shadow: 
+            0 0 20px rgba(168, 208, 230, 0.6),
+            0 8px 25px rgba(168, 208, 230, 0.4),
+            inset 0 0 40px rgba(168, 208, 230, 0.15);
+    }
+}
+
+    </style>
 </head>
 <body>
-    <!-- 顶部导航栏 -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <span>MIXX LAB</span>
-            </div>
-            <div class="nav-links">
-                <a href="#home" class="active">首页</a>
-                <a href="#videos">舞台视频</a>
-                <a href="#about">关于演出</a>
-                <a href="#gallery">照片墙</a>
-            </div>
+    <!-- === 新的顶部两行导航 === -->
+    
+    <!-- 第一行：搜索框 -->
+<!-- 顶部图片导航 -->
+<div class="hero-nav">
+    <div class="browser-bar">
+        <span class="browser-text">MIXX LAB</span>
+    </div>
+</div>
+
+    <!-- 第二行：导航链接 -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link active">HOME</a></li>
+                <li class="nav-item"><a href="#videos" class="nav-link">STAGE VIDEO</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">MY CON</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">PHOTO WALL</a></li>
+            </ul>
         </div>
     </nav>
 
     <div class="container">
         <!-- 主标题区域 -->
         <section class="main-title" id="home">
-            <h1>NMIXX</h1>
-            <h2>2nd Fan Concert · 澳门站</h2>
-            <div class="tag">MACAU · 2025</div>
+            <h1>MACAU·2025</h1>
+            <h2>NMIXX 2nd Fan Concert 기록</h2> 
+            <div class="title-photo">
+    <img src="D:\NMIXX0628\20250628_213715.jpg">
+</div>
             <div class="divider"></div>
             <div class="divider" style="width: 60px;"></div>
+            
             <!-- 日期展示 -->
             <div class="date-display">
                 <div class="date-item">
-                    <span class="date-number">2025</span>
-                    <span class="date-label">년</span>
+                    <span class="date-number">𝟐𝟎𝟐𝟓</span>
+                    <span class="date-label">𝒀𝑬𝑨𝑹</span>
                 </div>
                 <div class="date-item">
-                    <span class="date-number">06</span>
-                    <span class="date-label">월</span>
+                    <span class="date-number">𝟎𝟔</span>
+                    <span class="date-label">𝑴𝑶𝑵𝑻𝑯</span>
                 </div>
                 <div class="date-item">
-                    <span class="date-number">28</span>
-                    <span class="date-label">일</span>
+                    <span class="date-number">𝟐𝟖</span>
+                    <span class="date-label">𝑫𝑨𝒀</span>
                 </div>
             </div>
-        </section>        
+        </section>
+        
         <!-- 视频区域 -->
         <section class="video-section" id="videos">
             <div class="section-header">
@@ -383,18 +685,21 @@ body {
             
             <div class="video-list">
                 <div class="video-card">
+                    <i class="fas fa-play-circle"></i> <!-- 添加图标 -->
                     <h3>Love Me Like This</h3>
                     <p>初听不是很惊艳但在现场听是很震撼的一首歌🥹🥹</p>
                     <a href="#" class="video-link">观看视频</a>
                 </div>
                 
                 <div class="video-card">
+                    <i class="fas fa-play-circle"></i>
                     <h3>DASH</h3>
                     <p>应援声好齐的一首🥹</p>
                     <a href="#" class="video-link">观看视频</a>
                 </div>
                 
                 <div class="video-card">
+                    <i class="fas fa-play-circle"></i>
                     <h3>Know About Me</h3>
                     <p>在2025给爻带来好运的一首歌💖好听啊🥹</p>
                     <a href="#" class="video-link">观看视频</a>
@@ -402,11 +707,13 @@ body {
             </div>
             
             <div class="coming-soon">
+                <i class="fas fa-hourglass-half"></i>
                 <h3>更多内容整理中</h3>
                 <p>其他舞台正在整理上传</p>
             </div>
         </section>
-                <!-- 关于演出区域 -->
+        
+        <!-- 关于演出区域 -->
         <section class="about-section" id="about">
             <div class="section-header">
                 <h2>关于本次演出</h2>
@@ -414,21 +721,22 @@ body {
             </div>
             
             <div class="info-box">
-                <h3>我的体验感</h3>
-                <p>2025.6.28|第一次见糯米香香 特别有诚意和上进心的六个小女孩🥹🥹虽然我的观后感是没有想象中那么震撼 是因为那个时候特别想见skz吧。但是女宝们你们特别有诚意！虽然有走神时刻但我特别幸福🥹🥹</p>
+                <h3>💭 My Experience</h3>
+<p>𝟐𝟎𝟐𝟓.𝟔.𝟐𝟖 ┃ 第一次见到NMIXX 六个特别有诚意又有上进心的女孩们 🥹 虽然感觉没有想象中那么震撼（可能是因为当时太想见SKZ了...）但是女宝们你们特别有诚意！非常活力漂亮！很可爱🥹虽然有走神时刻但我特别幸福🥹</p>
             </div>
             
             <div class="info-box">
-                <h3>记录目的</h3>
-                <p>本页面用于整理当日舞台的饭拍影像、成员表现与个人记录，为无法到场的粉丝提供观看资源，也为到场粉丝留下回忆。</p>
-            </div>
+                <h3>📝 记录の目的</h3>
+<p>本页面用于整理当日舞台的饭拍影像、成员表现与个人记录～为无法到场的NSWER提供观看资源，也为到场NSWER留下美好回忆 💭</p>
+  </div>
             
-            <div class="info-box">
-                <h3>更新状态</h3>
-                <p>视频内容持续整理更新中，包括全景舞台、特别舞台等。预计将收录所有成员的团体舞台。</p>
+  <div class="info-box">
+<h3>⏳ 更新ing</h3>
+<p>视频内容持续整理上传中！包括全景舞台、特别舞台等等。预计将收录所有成员的团体舞台，请稍作等待 🫶</p>
             </div>
         </section>
-                <!-- 页脚 -->
+        
+        <!-- 页脚 -->
         <footer>
             <div class="footer-content">
                 <h3>NMIXX 2nd Fan Concert 澳门站记录</h3>
@@ -440,5 +748,6 @@ body {
                 <p class="copyright">本页面为粉丝非官方整理，所有视频版权归原作者所有 © 2025</p>
             </div>
         </footer>
+    </div>
 </body>
 </html>
